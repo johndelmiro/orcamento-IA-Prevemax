@@ -18,6 +18,8 @@
         .package-card {
             transition: all 0.3s ease;
             border-top: 4px solid;
+            display: flex; /* Added for equal height */
+            flex-direction: column; /* Added for equal height */
         }
         .package-card:hover {
             transform: translateY(-5px);
@@ -31,9 +33,14 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: #4CAF50;
+            color: #4CAF50; /* Default check color */
             font-weight: bold;
         }
+        /* Specific check colors per package */
+        .package-inicio .feature-item:before { color: #22c55e; } /* Green */
+        .package-essencial .feature-item:before { color: #3b82f6; } /* Blue */
+        .package-completo .feature-item:before { color: #a855f7; } /* Purple */
+
         .excluded-item:before {
             content: "✗";
             color: #F44336;
@@ -97,7 +104,7 @@
 
     <!-- Main Proposal Content (Initially Hidden) -->
     <div id="main-content">
-        <div class="max-w-5xl mx-auto px-4 py-8">
+        <div class="max-w-6xl mx-auto px-4 py-8"> <!-- Increased max-width for 3 columns -->
             <!-- Header -->
             <header class="gradient-bg text-white rounded-xl p-8 mb-8 shadow-lg">
                 <div class="flex flex-col md:flex-row justify-between items-center">
@@ -131,21 +138,26 @@
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                     <i class="fas fa-bullseye text-blue-500 mr-3"></i> Objetivos do Projeto
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"> <!-- Adjusted grid for objectives -->
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <i class="fas fa-bolt text-blue-500 mb-2"></i>
                         <h3 class="font-semibold">Otimizar e agilizar</h3>
-                        <p class="text-sm text-gray-600">Atendimento em múltiplos canais</p>
+                        <p class="text-sm text-gray-600">Atendimento</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <i class="fas fa-users text-blue-500 mb-2"></i>
                         <h3 class="font-semibold">Reduzir sobrecarga</h3>
-                        <p class="text-sm text-gray-600">Da equipe de atendimento</p>
+                        <p class="text-sm text-gray-600">Da equipe</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <i class="fas fa-filter text-blue-500 mb-2"></i>
                         <h3 class="font-semibold">Qualificar leads</h3>
                         <p class="text-sm text-gray-600">Automaticamente</p>
+                    </div>
+                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <i class="fas fa-headset text-blue-500 mb-2"></i> <!-- Icon change -->
+                        <h3 class="font-semibold">Contato Vendedor</h3>
+                        <p class="text-sm text-gray-600">Direcionamento</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <i class="fas fa-clock text-blue-500 mb-2"></i>
@@ -155,17 +167,17 @@
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <i class="fas fa-map-marker-alt text-blue-500 mb-2"></i>
                         <h3 class="font-semibold">Direcionamento</h3>
-                        <p class="text-sm text-gray-600">Por região e tipo de cliente</p>
+                        <p class="text-sm text-gray-600">Região / Tipo</p>
                     </div>
                      <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <i class="fas fa-cogs text-blue-500 mb-2"></i>
                         <h3 class="font-semibold">Customização</h3>
-                        <p class="text-sm text-gray-600">Política e regras internas</p>
+                        <p class="text-sm text-gray-600">Regras internas</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <i class="fas fa-tags text-blue-500 mb-2"></i>
                         <h3 class="font-semibold">Classificação</h3>
-                        <p class="text-sm text-gray-600">Revenda, distribuidor, consumidor</p>
+                        <p class="text-sm text-gray-600">Atendimentos</p>
                     </div>
                 </div>
             </section>
@@ -174,9 +186,64 @@
             <section class="mb-12">
                 <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Nossas Opções de Pacotes</h2>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Package 1 -->
-                    <div class="package-card bg-white rounded-xl shadow-md border-t-blue-500 flex flex-col">
+                <!-- MODIFIED: Grid now lg:grid-cols-3 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- NEW Package: Início -->
+                    <div class="package-card package-inicio bg-white rounded-xl shadow-md border-t-green-500">
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">Pacote Início / Compacto</h3>
+                                <!-- No popular tag here -->
+                            </div>
+                            <div class="mb-6">
+                                <span class="text-3xl font-bold text-gray-800">R$ 3.500,00</span>
+                                <span class="text-gray-500">/ implementação</span>
+                            </div>
+                            <p class="text-gray-600 mb-6">
+                                Ideal para empresas que buscam uma solução inicial e focada de IA para um canal principal.
+                            </p>
+                            <button class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 mb-6">
+                                Atendente IA Início
+                            </button>
+                        </div>
+                        <div class="border-t border-gray-200 pt-4 pb-6 px-6">
+                            <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i> Inclui:
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="feature-item">Planejamento e definição de escopo</li>
+                                <li class="feature-item">Assistente com LLM e linguagem natural</li>
+                                <li class="feature-item">Atendimento por 1 canal (ex: WhatsApp)</li>
+                                <li class="feature-item">Envia contato da vendedora responsável</li>
+                                <li class="feature-item">Scripts personalizados para perguntas frequentes</li>
+                                <li class="feature-item">Customização com política de atendimento e regras internas</li>
+                                <li class="feature-item">Suporte técnico por 30 dias</li>
+                            </ul>
+
+                            <h4 class="font-semibold text-gray-800 mt-4 mb-3 flex items-center">
+                                <i class="fas fa-times-circle text-red-500 mr-2"></i> Não inclui:
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="feature-item excluded-item">Conexão com múltiplos canais</li>
+                                <li class="feature-item excluded-item">Direcionamento avançado (região/tipo)</li>
+                                <li class="feature-item excluded-item">Classificação de atendimentos</li>
+                                <li class="feature-item excluded-item">Treinamento do Agente com dados</li>
+                                <li class="feature-item excluded-item">Treinamento da equipe</li>
+                                <li class="feature-item excluded-item">Integração com ERP/CRM</li>
+                                <li class="feature-item excluded-item">Memória de longo prazo</li>
+                                <li class="feature-item excluded-item">Relatórios automáticos</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 px-6 py-3 rounded-b-xl mt-auto">
+                            <p class="text-sm text-green-800 font-medium">
+                                <i class="fas fa-rocket text-green-600 mr-2"></i> Solução focada para iniciar com IA em seu principal canal de atendimento.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Package 2: Essencial (MODIFIED) -->
+                    <div class="package-card package-essencial bg-white rounded-xl shadow-md border-t-blue-500">
                         <div class="p-6 flex-grow">
                             <div class="flex justify-between items-start mb-4">
                                 <h3 class="text-xl font-bold text-gray-800">Pacote Essencial</h3>
@@ -187,28 +254,24 @@
                                 <span class="text-gray-500">/ implementação</span>
                             </div>
                             <p class="text-gray-600 mb-6">
-                                Ideal para empresas que desejam iniciar o uso de IA com um assistente prático e funcional, sem grandes integrações.
+                                Para quem deseja expandir a IA para mais canais, com mais inteligência e treinamento específico.
                             </p>
                             <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 mb-6">
                                 Atendente IA Essencial
                             </button>
                         </div>
                         <div class="border-t border-gray-200 pt-4 pb-6 px-6">
+                            <!-- MODIFIED: Header Text -->
                             <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
-                                <i class="fas fa-check-circle text-blue-500 mr-2"></i> Inclui:
+                                <i class="fas fa-check-circle text-blue-500 mr-2"></i> Inclui tudo do Pacote Início, mais:
                             </h4>
+                            <!-- MODIFIED: List only additional features -->
                             <ul class="space-y-2">
-                                <li class="feature-item">Planejamento e definição de escopo</li>
-                                <li class="feature-item">Criação de assistente com LLM e linguagem natural</li>
-                                <li class="feature-item">Conexão com canais: WhatsApp, Instagram e Facebook</li>
-                                <li class="feature-item">Direcionamento por região e tipo de cliente</li>
-                                <li class="feature-item">Scripts personalizados para perguntas frequentes</li>
-                                <!-- ADDED: New Feature -->
+                                <li class="feature-item">Conexão com canais adicionais (Instagram e Facebook)</li>
+                                <li class="feature-item">Direcionamento avançado por região e tipo de cliente</li>
                                 <li class="feature-item">Treinamento do Agente com dados da empresa</li>
-                                <li class="feature-item">Customização com política de atendimento e regras internas</li>
                                 <li class="feature-item">Classificação de atendimentos (revenda, distribuidor, consumidor)</li>
                                 <li class="feature-item">Treinamento da equipe de atendimento</li>
-                                <li class="feature-item">Suporte técnico por 30 dias</li>
                             </ul>
 
                             <h4 class="font-semibold text-gray-800 mt-4 mb-3 flex items-center">
@@ -228,8 +291,8 @@
                         </div>
                     </div>
 
-                    <!-- Package 2 -->
-                    <div class="package-card bg-white rounded-xl shadow-md border-t-purple-500 flex flex-col">
+                    <!-- Package 3: Completo -->
+                    <div class="package-card package-completo bg-white rounded-xl shadow-md border-t-purple-500">
                         <div class="p-6 flex-grow">
                             <div class="flex justify-between items-start mb-4">
                                 <h3 class="text-xl font-bold text-gray-800">Pacote Completo</h3>
@@ -240,7 +303,7 @@
                                 <span class="text-gray-500">/ implementação</span>
                             </div>
                             <p class="text-gray-600 mb-6">
-                                Para empresas que desejam aproveitar o máximo potencial da inteligência artificial, com integração completa ao ecossistema da empresa.
+                                Para empresas que desejam aproveitar o máximo potencial da IA, com integração completa e relatórios.
                             </p>
                             <button class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 mb-6">
                                 Atendente IA Advanced
@@ -251,14 +314,14 @@
                                 <i class="fas fa-check-circle text-purple-500 mr-2"></i> Inclui tudo do Pacote Essencial, mais:
                             </h4>
                             <ul class="space-y-2">
-                                <li class="feature-item">Integração com ERP/CRM via API (cadastro de leads and origem de contato)</li>
-                                <li class="feature-item">Armazenamento e recuperação de histórico (memória curta e média)</li>
+                                <li class="feature-item">Integração com ERP/CRM via API (cadastro de leads e origem)</li>
+                                <li class="feature-item">Armazenamento e recuperação de histórico (memória)</li>
                                 <li class="feature-item">Parametrização para relatórios mensais de leads e desempenho</li>
                              </ul>
-
+                            <!-- No excluded items needed here as it's the top tier -->
                             <div class="mt-6 bg-purple-50 border-l-4 border-purple-500 p-4">
                                 <p class="text-sm text-purple-800">
-                                    <i class="fas fa-star text-purple-500 mr-2"></i> Solução completa e profissional, para quem quer usar IA de verdade como um diferencial competitivo e estratégico.
+                                    <i class="fas fa-star text-purple-500 mr-2"></i> Solução completa para usar IA como diferencial competitivo e estratégico.
                                 </p>
                             </div>
                         </div>
@@ -298,7 +361,7 @@
                         </div>
                         <div class="ml-3">
                             <p class="text-gray-600">
-                                Ambos os pacotes incluem acompanhamento por 30 dias após a entrega.
+                                Todos os pacotes incluem acompanhamento e suporte técnico por 30 dias após a entrega. <!-- Slightly rephrased for clarity -->
                             </p>
                         </div>
                     </div>
@@ -323,7 +386,7 @@
                 <div class="flex justify-center mb-4">
                     <img src="https://i.postimg.cc/xjJThsqJ/logodelmirodigital-pure-lion.png" alt="Delmiro Digital" class="h-12">
                 </div>
-                <p>© 2023 Todos os direitos reservados | Delmiro Digital LTDA</p>
+                <p>© 2025 Todos os direitos reservados | Delmiro Digital LTDA</p>
             </footer>
         </div>
     </div><!-- End Main Content Wrapper -->
